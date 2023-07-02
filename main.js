@@ -16,7 +16,7 @@ userInput.addEventListener("keydown", weather = (e) => {
         title.insertAdjacentHTML("afterend", `<p class="fetching_details">Fetching Details...</p>`);
         getLocationSection.style.height = "350px";
 
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${userInput.value}&APPID=YOUR_API_KEY`)    
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${userInput.value}&APPID=YOUR_API_KEY`)
             .then(res =>
                 res.json()
             )
@@ -66,23 +66,23 @@ userInput.addEventListener("keydown", weather = (e) => {
                 });
 
                 if (data.weather[0].main == "Mist") {
-                    document.querySelector(".weather_image").src = "Mist.png";
+                    document.querySelector(".weather_image").src = "images/Mist.png";
                 }
 
                 else if (data.weather[0].main == "Clouds") {
-                    document.querySelector(".weather_image").src = "Clouds.png";
+                    document.querySelector(".weather_image").src = "images/Clouds.png";
                 }
 
                 else if (data.weather[0].main == "Rain") {
-                    document.querySelector(".weather_image").src = "Rain.png";
+                    document.querySelector(".weather_image").src = "images/Rain.png";
                 }
 
                 else if (data.weather[0].main == "Snow") {
-                    document.querySelector(".weather_image").src = "Snow.png";
+                    document.querySelector(".weather_image").src = "images/Snow.png";
                 }
 
                 else {
-                    document.querySelector(".weather_image").src = "Clear.png";
+                    document.querySelector(".weather_image").src = "images/Clear.png";
                 };
             })
 
@@ -93,7 +93,7 @@ userInput.addEventListener("keydown", weather = (e) => {
                     <h1>Weather App</h1>
                 </div>
                 <p>Not Found :(</p>
-                <img class="error_image" src="404.png">
+                <img class="error_image" src="images/404.png">
             </div>
             `
             );
@@ -166,23 +166,23 @@ weatherBtn.addEventListener("click", () => {
                 `;
 
                             if (data.weather[0].main == "Mist") {
-                                document.querySelector(".weather_image").src = "Mist.png";
+                                document.querySelector(".weather_image").src = "images/Mist.png";
                             }
 
                             else if (data.weather[0].main == "Clouds") {
-                                document.querySelector(".weather_image").src = "Clouds.png";
+                                document.querySelector(".weather_image").src = "images/Clouds.png";
                             }
 
                             else if (data.weather[0].main == "Rain") {
-                                document.querySelector(".weather_image").src = "Rain.png";
+                                document.querySelector(".weather_image").src = "images/Rain.png";
                             }
 
                             else if (data.weather[0].main == "Snow") {
-                                document.querySelector(".weather_image").src = "Snow.png";
+                                document.querySelector(".weather_image").src = "images/Snow.png";
                             }
 
                             else {
-                                document.querySelector(".weather_image").src = "Clear.png";
+                                document.querySelector(".weather_image").src = "images/Clear.png";
                             };
                         })
 
@@ -194,7 +194,7 @@ weatherBtn.addEventListener("click", () => {
                     <h1>Weather App</h1>
                 </div>
                 <p>Not Found :(</p>
-                <img class="error_image" src="404.png">
+                <img class="error_image" src="images/404.png">
             </div>
             `);
 
