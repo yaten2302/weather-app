@@ -1,214 +1,41 @@
-const weatherBtn = document.querySelector(".get_weather_btn"),
-    userInput = document.querySelector(".user-input"),
-    getLocationSection = document.querySelector(".get_location"),
-    container = document.querySelector(".container"),
-    getWeather = document.querySelector(".get_weather"),
-    arrowBack = document.querySelector(".arrow-back"),
-    title = document.querySelector(".title");
+const arrow = document.querySelector(".arrow"),
+  userInput = document.querySelector("input"),
+  getImg = document.querySelector("img"),
+  tempValue = document.querySelector(".temp-value"),
+  tempLike = document.querySelector(".temp-like"),
+  locationNameDisplay = document.querySelector(".location-name"),
+  temperatureValue = document.querySelector(".temperature-value"),
+  humidityValue = document.querySelector(".humidity-value"),
+  getLocation = document.querySelector(".get_location"),
+  displayWeather = document.querySelector(".display-weather");
 
+const apiKey = "7f4306aa6e1a26c434fce9f7e5f32c20";
 
-
-/* User Enters Location */
-userInput.addEventListener("keydown", weather = (e) => {
-
-    if (e.keyCode === 13) {
-
-        title.insertAdjacentHTML("afterend", `<p class="fetching_details">Fetching Details...</p>`);
-        getLocationSection.style.height = "350px";
-
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${userInput.value}&APPID=YOUR_API_KEY`)
-            .then(res =>
-                res.json()
-            )
-
-            .then(data => {
-                getLocationSection.style.display = "none";
-                container.innerHTML += `
-                <div class="get_weather">
-                    <div class="title get_location_title">
-                        <i class="uil uil-arrow-left arrow-back"></i>
-                        <h1>Weather App</h1>
-                    </div>
-
-                    <div class="weather_content">
-                        <img class="weather_image">
-                        <h1 class="temperature">${(data.main.temp - 273).toFixed(0)}\xB0C</h1>
-
-                        <div class="weather_location">
-                            <i class="uil uil-location-point"></i>
-                            <p>${userInput.value}</p>
-                        </div>
-
-                        <div class="other_weather_details">
-                            <div class="feels_like">
-                                <i class="uil uil-temperature-half"></i>
-                                <div class="temp_details">
-                                    <p>${(data.main.feels_like - 273).toFixed(0)}\xB0C</p>
-                                    <p>Feels Like</p>
-                                </div>
-                            </div>
-
-                            <div class="humidity">
-                                <i class="uil uil-tear"></i>
-                                <div class="temp_details">
-                                    <p>${data.main.humidity}</p>
-                                    <p>Humidity</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `;
-
-                document.querySelector("i").addEventListener("click", () => {
-                    document.querySelector(".get_location").style.display = "flex";
-                    document.querySelector(".get_weather").style.display = "none";
-                });
-
-                if (data.weather[0].main == "Mist") {
-                    document.querySelector(".weather_image").src = "images/Mist.png";
-                }
-
-                else if (data.weather[0].main == "Clouds") {
-                    document.querySelector(".weather_image").src = "images/Clouds.png";
-                }
-
-                else if (data.weather[0].main == "Rain") {
-                    document.querySelector(".weather_image").src = "images/Rain.png";
-                }
-
-                else if (data.weather[0].main == "Snow") {
-                    document.querySelector(".weather_image").src = "images/Snow.png";
-                }
-
-                else {
-                    document.querySelector(".weather_image").src = "images/Clear.png";
-                };
-            })
-
-            .catch(err => container.innerHTML += `
-            <div class="location_error">
-                <div class="title get_location_title">
-                    <i class="uil uil-arrow-left arrow-back"></i>
-                    <h1>Weather App</h1>
-                </div>
-                <p>Not Found :(</p>
-                <img class="error_image" src="images/404.png">
-            </div>
-            `
-            );
-    };
-});
-
-
-
-/* Get User Location */
-weatherBtn.addEventListener("click", () => {
-    navigator.geolocation.getCurrentPosition(
-
-        (position) => {
-            const { latitude, longitude } = position.coords;
-            fetch(`https://api-bdc.net/data/reverse-geocode?latitude=${latitude}&longitude=${longitude}&localityLanguage=en&key=YOUR_API_KEY`)
-
-                .then(response =>
-                    response.json()
-                )
-
-                .then(cityData => {
-
-
-                    title.insertAdjacentHTML("afterend", `<p class="fetching_details">Fetching Details...</p>`);
-                    getLocationSection.style.height = "350px";
-
-                    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=YOUR_API_KEY`)
-
-                        .then(res =>
-                            res.json()
-                        )
-
-                        .then(data => {
-                            getLocationSection.style.display = "none";
-                            container.innerHTML += `
-                <div class="get_weather">
-                    <div class="title get_location_title">
-                        <i class="uil uil-arrow-left arrow-back"></i>
-                        <h1>Weather App</h1>
-                    </div>
-
-                    <div class="weather_content">
-                        <img class="weather_image">
-                        <h1 class="temperature">${(data.main.temp - 273).toFixed(0)}\xB0C</h1>
-
-                        <div class="weather_location">
-                            <i class="uil uil-location-point"></i>
-                            <p>${cityData.city}</p>
-                        </div>
-
-                        <div class="other_weather_details">
-                            <div class="feels_like">
-                                <i class="uil uil-temperature-half"></i>
-                                <div class="temp_details">
-                                    <p>${(data.main.feels_like - 273).toFixed(0)}\xB0C</p>
-                                    <p>Feels Like</p>
-                                </div>
-                            </div>
-
-                            <div class="humidity">
-                                <i class="uil uil-tear"></i>
-                                <div class="temp_details">
-                                    <p>${data.main.humidity}</p>
-                                    <p>Humidity</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `;
-
-                            if (data.weather[0].main == "Mist") {
-                                document.querySelector(".weather_image").src = "images/Mist.png";
-                            }
-
-                            else if (data.weather[0].main == "Clouds") {
-                                document.querySelector(".weather_image").src = "images/Clouds.png";
-                            }
-
-                            else if (data.weather[0].main == "Rain") {
-                                document.querySelector(".weather_image").src = "images/Rain.png";
-                            }
-
-                            else if (data.weather[0].main == "Snow") {
-                                document.querySelector(".weather_image").src = "images/Snow.png";
-                            }
-
-                            else {
-                                document.querySelector(".weather_image").src = "images/Clear.png";
-                            };
-                        })
-
-
-                        .catch(err => container.innerHTML += `
-            <div class="location_error">
-                <div class="title get_location_title">
-                    <i class="uil uil-arrow-left arrow-back"></i>
-                    <h1>Weather App</h1>
-                </div>
-                <p>Not Found :(</p>
-                <img class="error_image" src="images/404.png">
-            </div>
-            `);
-
-                });
-        },
-
-        (error) => {
-            getLocationSection.innerHTML = `
-            <h1 class="title">Weather App</h1>
-            <p class="location_denied">User Denied Location</p>
-            <input type="text" class="user-input" placeholder="Enter Location">
-            <div class="or_btn"></div>
-            <button class="get_weather_btn">Get Device Location</button>
-            `;
-            getLocationSection.style.height = "350px";
+userInput.addEventListener("keydown", (e) => {
+  if (userInput.value && e.keyCode === 13) {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${userInput.value}&units=metric&appid=${apiKey}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        getLocation.style.display = "none";
+        displayWeather.style.display = "block";
+        arrow.addEventListener("click", () => {
+          getLocation.style.display = "block";
+          displayWeather.style.display = "none";
+          userInput.value = "";
         });
+
+        if (data.main.temp < 0) getImg.src = "./images/Snow.png";
+        else getImg.src = `./images/${data.weather[0].main}.png`;
+
+        tempValue.innerHTML = `${data.main.temp.toFixed(0)}&degC`;
+        tempLike.innerHTML = data.weather[0].main;
+        locationNameDisplay.innerHTML = `${data.name}, ${data.sys.country}`;
+
+        temperatureValue.innerHTML = `${data.main.temp.toFixed(0)}&degC`;
+        humidityValue.innerHTML = `${data.main.humidity}%`;
+      })
+      .catch((error) => (getImg.src = "./images/404.png"));
+  }
 });
