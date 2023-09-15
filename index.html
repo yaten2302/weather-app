@@ -1,28 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
+    />
+  </head>
 
-<body>
-
-
+  <body>
     <div class="container">
-        <div class="get_location">
-            <h1 class="title">Weather App</h1>
-            <input type="text" class="user-input" placeholder="Enter Location">
-            <div class="or_btn"></div>
-            <button class="get_weather_btn">Get Device Location</button>
+      <div class="get_location">
+        <div class="heading-section">
+          <h1 class="title">Weather App</h1>
         </div>
+
+        <div class="input-section">
+          <input
+            type="text"
+            class="user-input"
+            placeholder="Enter Location"
+            spellcheck="false"
+          />
+        </div>
+      </div>
+
+      <div class="display-weather">
+        <div class="heading-section">
+          <i class="uil uil-arrow-left arrow"></i>
+          <h1 class="title">Weather App</h1>
+        </div>
+
+        <div class="weather-section">
+          <img src="" alt="" width="220px" height="170px" />
+          <p class="temp-value"></p>
+          <p class="temp-like"></p>
+          <div class="display-location">
+            <i class="uil uil-location-point"></i>
+            <p class="location-name"></p>
+          </div>
+
+          <div class="bottom-section">
+            <div class="feels-like-section">
+              <i class="uil uil-temperature-half"></i>
+              <div class="text">
+                <p class="temperature-value"></p>
+                <p>Feels Like</p>
+              </div>
+            </div>
+            <div class="humidity-section">
+              <i class="uil uil-tear"></i>
+              <div class="text">
+                <p class="humidity-value"></p>
+                <p>Humidity</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-
     <script src="main.js"></script>
-</body>
-
+  </body>
 </html>
